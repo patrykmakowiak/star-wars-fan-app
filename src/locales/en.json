@@ -1,3 +1,39 @@
 {
-  "message": "hello i18n !!"
+  "Buttons": {
+    "BackToList": "Back to film list",
+    "MoreDetails": "Show more details"
+  },
+  "Sorting": {
+    "Title": "Sorting",
+    "Type": {
+      "ByTitleAsc": "Sort by title in ascending order",
+      "ByTitleDesc": "Sort by title in descending order",
+      "ByDateAsc": "Sort by date in ascending order",
+      "ByDateDesc": "Sort by date in descending order"
+    }
+  },
+  "Searching": {
+    "Title": "Searching film"
+  },
+  "Film": {
+    "Title": "Film",
+    "Planets": "Planets: ",
+    "Characters": "Characters: ",
+    "Vehicles": "Vehicles: "
+  },
+  "Reviews": {
+    "Title": "Reviews",
+    "Name": "Name",
+    "Email": "E-mail",
+    "NoReviews": "Nobody gives any reviews yet. Be the first!",
+    "AddReview": "Add review",
+    "Clear": "Clear",
+    "Description": "Description",
+    "Errors": {
+      "EmailValid": "Must be valid e-mail",
+      "RequiredEmail": "Email is required.",
+      "RequiredName": "Name is required.",
+      "RequiredDescription": "Description is required."
+    }
+  }
 }

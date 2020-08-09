@@ -1,12 +1,11 @@
 import axios from "axios";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 20000,
   headers: {
     "Content-type": "application/json"
   },
-  // default method
   method: "GET"
 });
 
