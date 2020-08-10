@@ -17,7 +17,13 @@ import {
 } from "./mutations.type";
 import { FETCH_FILM, FETCH_FILMS, SEARCH_FILMS } from "./actions.type";
 import { getFilms, getFilm, searchFilm } from "@/api/films";
-import { getInitFilm, mapFilms, mapFilm } from "@/utils";
+import {
+  getInitFilm,
+  mapFilms,
+  mapFilm,
+  getFilmsId,
+  mapSearchedFilms
+} from "@/utils";
 import { ALL_FETCHED_FILMS } from "@/constants";
 
 Vue.use(Vuex);
@@ -29,7 +35,8 @@ export default new Vuex.Store({
     film: getInitFilm(),
     reviews: {},
     isLoading: true,
-    isSearching: false
+    isSearching: false,
+    filmsId: []
   },
   mutations: {
     [CACHE_FILMS](state, { key, films }) {
@@ -96,6 +103,7 @@ export default new Vuex.Store({
         state.isSearching = false;
       } else {
         const { results } = await getFilms();
+        state.filmsId = getFilmsId(results);
         commit(CACHE_FILMS, {
           key: ALL_FETCHED_FILMS,
           films: mapFilms(results)
@@ -123,10 +131,10 @@ export default new Vuex.Store({
         state.isSearching = false;
       } else {
         const { results } = await searchFilm(name);
-        commit(LOAD_SEARCHED_FILMS, mapFilms(results));
+        commit(LOAD_SEARCHED_FILMS, mapSearchedFilms(results, state.filmsId));
         commit(CACHE_FILMS, {
           key: name,
-          films: mapFilms(results)
+          films: mapSearchedFilms(results, state.filmsId)
         });
       }
     }

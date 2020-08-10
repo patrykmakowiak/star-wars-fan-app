@@ -1,13 +1,13 @@
 <template>
   <v-col cols="12" sm="6">
-    <v-form>
+    <v-form @submit="search">
       <v-text-field
         solo
         :loading="isSearching"
         :label="$t('Searching.Title')"
         prepend-inner-icon="mdi-magnify"
         v-model="keyword"
-        @input="debounce(search, 600)"
+        @input="debounce(searchDebounce, 600)"
         hide-details
       ></v-text-field>
     </v-form>
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       keyword: "",
-      timeout: 0
+      timeout: undefined
     };
   },
   computed: {
@@ -31,8 +31,13 @@ export default {
     }
   },
   methods: {
-    search() {
+    searchDebounce() {
       this.$store.dispatch(SEARCH_FILMS, this.keyword);
+    },
+    search(e) {
+      this.$store.dispatch(SEARCH_FILMS, this.keyword);
+      e.preventDefault();
+      clearTimeout(this.timeout);
     },
     debounce(func, timeout) {
       clearTimeout(this.timeout);
