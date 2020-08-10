@@ -15,6 +15,12 @@ export const getInitFilm = (id = -1) => ({
   vehicles: []
 });
 
+export const mapSearchedFilms = (films, filmsId) =>
+  films.map(film => ({
+    ...film,
+    id: filmsId[film.episode_id]
+  }));
+
 export const mapFilms = films =>
   films.map((film, index) => ({
     ...film,
@@ -25,3 +31,9 @@ export const mapFilm = (id, film) => ({
   ...film,
   id
 });
+
+export const getFilmsId = films =>
+  films.reduce((accumulator, currentValue, currentIndex) => {
+    accumulator[currentValue.episode_id] = currentIndex + 1;
+    return accumulator;
+  }, {});

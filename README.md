@@ -22,3 +22,18 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Folder Structure
+
+```sh
+src/
+├── api         
+├── components                
+├── constants                   
+├── locales                  
+├── plugins
+├── router              
+├── store
+├── utils              
+└── views               
+```
